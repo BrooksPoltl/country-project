@@ -21,7 +21,7 @@ export default new Vuex.Store({
     actions: {
         initCountries: ({ commit }) => {
             Vue.http.get('https://restcountries.eu/rest/v2/all')
-            .then(response=> console.log(response))
+            .then(response=> commit('SET_COUNTRIES', response.body));
             
         }
     }
