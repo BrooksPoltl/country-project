@@ -1,6 +1,7 @@
 <template>
     <div>
         <p>{{ country.name }}</p>
+        <p>{{ country.population }}</p>
     </div>
 </template>
 
