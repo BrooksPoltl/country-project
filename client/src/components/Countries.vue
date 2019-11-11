@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class = "country-container">
         <app-country 
             v-for = "(country, index) in countries" 
             :country = "country" 
@@ -21,3 +21,10 @@
         }
     }
 </script>
+
+<style scoped>
+    .country-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>

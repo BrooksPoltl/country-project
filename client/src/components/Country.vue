@@ -1,7 +1,6 @@
 <template>
-    <div>
+    <div style = "country-container">
         <p>{{ country.name }}</p>
-        <p>{{ country.population }}</p>
     </div>
 </template>
 
@@ -10,3 +9,9 @@
         props: ['country']
     }
 </script>
+
+<style>
+    .country-container {
+        padding: 20px;
+    }
+</style>
