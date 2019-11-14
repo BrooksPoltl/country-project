@@ -1,5 +1,5 @@
-<template>
-    <div style = "country-container">
+<template style = "country-container">
+    <div>
         <p>{{ country.name }}</p>
     </div>
 </template>
