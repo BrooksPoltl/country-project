@@ -8,7 +8,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         countries: [],
-        poplationCountries: [],
+        populationCountries: [],
         regionCountries: [],
         currentCountries: [],
     },
@@ -21,16 +21,27 @@ export default new Vuex.Store({
         'SET_COUNTRIES' (state, countries) {
             state.countries = countries;
             state.currentCountries = countries;
+            state.regionCountries = countries;
+            state.populationCountries = countries;
         },
         'SET_POPULATION_COUNTRIES'(state, countries) {
             state.populationCountries = countries;
         },
-        'SET_CURRENT_COUNTRIES'(state, countries) {
-            state.currentCountries = countries;
-        },
         'SET_REGION_COUNTRIES'(state, countries) {
             state.regionCountries = countries;
-        }
+        },
+        'SET_CURRENT_COUNTRIES'(state) {
+            let currentCountries = [];
+            for(let i = 0; i< state.populationCountries.length; i++) {
+                for(let j = 0; j < state.regionCountries.length; j++) {
+                    if(state.populationCountries[i].name == state.regionCountries[j].name){ 
+                        currentCountries.push(state.populationCountries[i]);
+                    }
+                }
+            }
+            
+            state.currentCountries = currentCountries;
+        },
     },
     actions: {
         initCountries: ({ commit }) => {
@@ -58,6 +69,7 @@ export default new Vuex.Store({
                     break;
             }
             commit('SET_POPULATION_COUNTRIES', newCountries);
+            commit('SET_CURRENT_COUNTRIES');
         },
         regionFilter: ({ commit, state }, filterParam) => {
             
@@ -80,6 +92,7 @@ export default new Vuex.Store({
                     break;
             }
             commit('SET_REGION_COUNTRIES', newCountries);
+            commit('SET_CURRENT_COUNTRIES');
         },
     }
 });
