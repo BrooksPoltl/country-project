@@ -38,6 +38,18 @@ export default new Vuex.Store({
                 case 0:
                     newCountries = state.countries.filter(country => country.population < 100000);
                     break;
+                case 1:
+                    newCountries = state.countries.filter(country => country.population >= 100000 & country.population < 1000000);
+                    break;
+                case 2:
+                    newCountries = state.countries.filter(country => country.population >= 1000000 & country.population < 10000000);
+                    break;
+                case 3:
+                    newCountries = state.countries.filter(country => country.population >= 10000000 & country.population < 50000000);
+                    break;
+                case 4:
+                    newCountries = state.countries.filter(country => country.population > 50000000);
+                    break;
             }
             commit('SET_CURRENT_COUNTRIES', newCountries);
         },
