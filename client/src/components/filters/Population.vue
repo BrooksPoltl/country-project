@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3>Population:</h3>
-        <button v-for = "(population, index) in populations" :key = "index" @click = "populationFilter(index)">{{ population }}</button>
+        <button :class =  "[active === index ?'active':'']" v-for = "(population, index) in populations" :key = "index" @click = "handleClick(index)">{{ population }}</button>
     </div>
 </template>
 
@@ -16,14 +16,25 @@
                 "> 1,000,000, < 10,000,000",
                 ">10,000,000, <50,000,000",
                 ">50,000,000"
-                ]
+                ],
+                active: null
             }
         },
         methods: {
             ...mapActions([
                 'populationFilter'
-            ])
+            ]),
+            handleClick(index){
+                this.active = index;
+                this.populationFilter(index);
+            }
         },
 
     }
 </script>
+
+<style scoped>
+    .active {
+        color: red;
+    }
+</style>
